@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { env } from "process";
 
 export const metadata: Metadata = {
