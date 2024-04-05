@@ -37,7 +37,7 @@ type TAddress = {
 };
 
 // Return a list of `params` to populate the [slug] dynamic segment
-async function generateStaticParams(id: string) {
+async function getData(id: string) {
   const url = `${env.NEXT_PUBLIC_API}/users/${id}`;
   console.log(url);
 
@@ -49,7 +49,7 @@ async function generateStaticParams(id: string) {
 // using the `params` returned by `generateStaticParams`
 export default async function Page({ params }: TParams) {
   const { id } = params;
-  const data: any = await generateStaticParams(id);
+  const data: any = await getData(id);
 
   console.log("🚀 ~ Page ~ data:", data);
   const keys = Object.keys(data);

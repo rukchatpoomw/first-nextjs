@@ -1,11 +1,10 @@
-// `app/dashboard/page.tsx` is the UI for the `/dashboard` URL
+import { Suspense } from "react";
 
-import { Metadata } from 'next'
- 
-export const metadata: Metadata = {
-  title: 'Dashboard',
+export default function Posts() {
+  return (
+    <section>
+      <Suspense fallback={<p>Loading feed...</p>}></Suspense>
+      <Suspense fallback={<p>Loading weather...</p>}>hi2</Suspense>
+    </section>
+  );
 }
-
-export default function Page() {
-    return <h1>Hello, Dashboard Pages!</h1>
-  }

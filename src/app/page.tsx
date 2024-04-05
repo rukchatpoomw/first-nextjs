@@ -2,6 +2,14 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { redirect, usePathname } from "next/navigation";
 import { env } from "process";
+import {
+  Button,
+  Autocomplete,
+  TextField,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+import ButtonUsage from "@/components/Button";
 
 export const metadata: Metadata = {
   title: "Next.js",
@@ -38,19 +46,35 @@ export default async function Page() {
   );
 
   return (
-    <div className="flex">
-      <h1 className="text-cyan-100">Generate Staic Params</h1>
-      <div>
+    <main className="flex flex-col justify-items-center items-center gap-4 p-4">
+      <h1 className=" font-bold text-2xl">Generate Staic Params</h1>
+      <div className="grid gap-4">
         {data.map((user, index) => {
           return (
-            <Link href={`/user/${user.id}`} key={index}>
-              {user.name}
+            <Link
+              className=" hover:text-red-400"
+              href={`/user/${user.id}`}
+              key={index}
+            >
+              <Button className="w-full" variant="contained">
+                {user.name}
+              </Button>
             </Link>
           );
         })}
-        <Link href="/dashboard">Dashboard</Link>
-        <Link href="/blog/1">Blog</Link>
+        <div className="grid gap-4 rounded p-4 bg-slate-200 ">
+          <Link href="/dashboard">
+            <Button className=" bg-orange-400 w-full" variant="contained">
+              Dashboard
+            </Button>
+          </Link>
+          <Link href="/dashboard">
+            <Button className=" bg-gray-300 w-full" variant="contained">
+              Blog
+            </Button>
+          </Link>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
