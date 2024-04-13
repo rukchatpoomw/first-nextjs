@@ -38,9 +38,7 @@ type TAddress = {
 
 // Return a list of `params` to populate the [slug] dynamic segment
 async function getData(id: string) {
-  const url = `${env.NEXT_PUBLIC_API}/users/${id}`;
-  console.log(url);
-
+  const url = `${env.NEXT_PUBLIC_EXTERNAL_API}/users/${id}`;
   const user: TUsers = await fetch(url).then((res) => res.json());
   return user;
 }
@@ -50,10 +48,8 @@ async function getData(id: string) {
 export default async function Page({ params }: TParams) {
   const { id } = params;
   const data: any = await getData(id);
-
-  console.log("🚀 ~ Page ~ data:", data);
   const keys = Object.keys(data);
-  console.log("🚀 ~ Page ~ keys:", keys);
+
   return (
     <div
       style={{
@@ -63,9 +59,11 @@ export default async function Page({ params }: TParams) {
         flexDirection: "column",
       }}
     >
-      {keys.map((key) => {
+      {keys.map((key, index) => {
         return (
-          <span>{typeof data[key] !== "object" ? data[key] : undefined}</span>
+          <span key={index}>
+            {typeof data[key] !== "object" ? data[key] : undefined}
+          </span>
         );
       })}
     </div>
